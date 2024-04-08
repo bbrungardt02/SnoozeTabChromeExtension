@@ -1,66 +1,64 @@
-/* Apply basic styles to the popup container */
-.container {
-  width: 300px;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+body {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  font-family: "Roboto", sans-serif;
+  padding: 30px 30px;
 }
 
-/* Style the heading */
-h1 {
-  font-size: 20px;
+.container {
+  background-color: #252526;
+  padding: 30px 40px;
+  border-radius: 10px;
+  margin: 20px 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1,
+h2 {
+  color: #86c691;
   margin-bottom: 20px;
 }
 
-/* Style labels for form inputs */
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-/* Style input fields and select dropdowns */
-input[type="number"],
-select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; /* Ensure padding and border are included in element's total width */
-}
-
-/* Style the snooze button */
-#snoozeButton {
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
+button {
+  background-color: #86c691;
+  color: #1e1e1e;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
-}
-
-/* Change button background color on hover */
-#snoozeButton:hover {
-  background-color: #45a049;
-}
-
-/* Center the button text */
-#snoozeButton span {
-  display: inline-block;
-  width: 100%;
+  padding: 15px 30px;
   text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
-/* Hide the default arrow on number input fields (Chrome-specific) */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+button:hover {
+  background-color: #6aa678;
 }
 
-/* Style the default arrow on number input fields (Firefox-specific) */
-input[type="number"]::-moz-inner-spin-button {
-  appearance: none;
-  margin: 0;
+select,
+input[type="number"] {
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+  border: none;
+  padding: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#snoozedTabs {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #2d2d30;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }

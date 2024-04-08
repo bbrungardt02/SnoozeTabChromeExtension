@@ -11,7 +11,7 @@
     <div class="container">
       <h1>Tab Snooze</h1>
       <label for="tabList">Select a tab to snooze:</label>
-      <select id="tabList">
+      <select id="tabList" multiple>
         <!-- Tab options will be dynamically populated here -->
       </select>
       <label for="snoozeDuration">Snooze for:</label>
@@ -23,6 +23,10 @@
         <option value="days">Days</option>
       </select>
       <button id="snoozeButton">Snooze</button>
+    </div>
+    <div id="snoozedTabs">
+      <h2>Snoozed Tabs</h2>
+      <!-- Snoozed tabs will be dynamically populated here -->
     </div>
 
     <script src="popup.js"></script>
