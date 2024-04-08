@@ -2,7 +2,7 @@ body {
   background-color: #1e1e1e;
   color: #dcdcdc;
   font-family: "Roboto", sans-serif;
-  padding: 30px 30px;
+  width: 100vh;
 }
 
 .container {
@@ -15,33 +15,59 @@ body {
 
 h1,
 h2 {
-  color: #86c691;
+  color: #32cd32;
   margin-bottom: 20px;
 }
 
 label {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
+#tabList {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #3c3c3c;
+  color: #dcdcdc;
+  border: none;
+  overflow-y: auto;
+}
+
+#tabList option {
+  background-color: #252526; /* Dark background color */
+  color: #dcdcdc; /* Light text color */
+  padding: 5px; /* Add some padding */
+  margin: 2px 0; /* Add some margin between options */
+  border-radius: 5px; /* Rounded corners */
+}
+
 button {
-  background-color: #86c691;
+  background-color: #32cd32;
   color: #1e1e1e;
   border: none;
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex; */
+  /* justify-content: flex-end; */
   font-size: 18px;
-  margin: 10px 2px;
+  /* margin: 10px 2px; */
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
+.cancel-button {
+  background-color: red;
+}
+
 button:hover {
-  background-color: #6aa678;
+  background-color: #228b22;
 }
 
 select,
@@ -52,13 +78,38 @@ input[type="number"] {
   padding: 10px;
   padding-bottom: 10px;
   border-radius: 5px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 #snoozedTabs {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   padding: 20px;
   background-color: #2d2d30;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+#snoozedTabs li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  width: 128px;
+  height: 128px;
+  display: block;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.time-span {
+  color: #32cd32;
+  font-weight: bold;
+}
+
+.url-link {
+  color: #00a2ff;
+  font-weight: bold;
+  text-decoration: underline;
 }

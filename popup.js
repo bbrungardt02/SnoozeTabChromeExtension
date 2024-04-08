@@ -26,17 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
           var listItem = document.createElement("li");
           listItem.id = "tab-" + tabId; // Assign a unique ID to each list item
 
-          var urlSpan = document.createElement("span"); // Create a new span for the URL
-          urlSpan.textContent = url + " (";
-          urlSpan.title = url; // Set the title attribute to the URL
-          listItem.appendChild(urlSpan); // Append the span to the list item
+          var urlLink = document.createElement("a"); // Create a new 'a' element for the URL
+          urlLink.href = url;
+          urlLink.textContent = url;
+          urlLink.target = "_blank";
+          urlLink.classList.add("url-link");
+          listItem.appendChild(urlLink);
 
           var timeSpan = document.createElement("span"); // This span will display the remaining time
+          timeSpan.classList.add("time-span");
           listItem.appendChild(timeSpan);
-          listItem.appendChild(document.createTextNode(" seconds)"));
 
           var cancelButton = document.createElement("button");
           cancelButton.textContent = "Cancel";
+          cancelButton.classList.add("cancel-button");
           cancelButton.addEventListener("click", function () {
             chrome.runtime.sendMessage(
               {
@@ -58,7 +61,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Start the countdown
+      // Helper function to convert seconds to days, hours, minutes, and seconds
+      function secondsToDhms(seconds) {
+        seconds = Number(seconds);
+        var d = Math.floor(seconds / (3600 * 24));
+        var h = Math.floor((seconds % (3600 * 24)) / 3600);
+        var m = Math.floor((seconds % 3600) / 60);
+        var s = Math.floor(seconds % 60);
+
+        var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+        var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+        var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+        var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+        return dDisplay + hDisplay + mDisplay + sDisplay;
+      }
+
+      // Use the helper function in your countdown
       setInterval(function () {
         for (var tabId in items) {
           var endTime = items[tabId].endTime;
@@ -67,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "#tab-" + tabId + " span:nth-child(2)"
           );
           if (element) {
-            element.textContent = remainingTime;
+            element.textContent = secondsToDhms(remainingTime); // Use the helper function here
           }
         }
       }, 1000); // Update every second
@@ -132,8 +150,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Close the tab
                 chrome.tabs.remove(selectedTabId);
 
+                // Clear the current list of tabs in the dropdown menu
+                document.getElementById("tabList").innerHTML = "";
+
                 // Update the list of snoozed tabs after a tab is snoozed
                 getSnoozedTabs();
+
+                // Update the tab list options after a tab is snoozed
+                getTabs();
               });
             });
           }
