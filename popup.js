@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to get and display the snoozed tabs
+  // Function to get and display the snoozed tabs
   function getSnoozedTabs() {
     chrome.storage.local.get(null, function (items) {
       var snoozedTabs = document.getElementById("snoozedTabs");
@@ -29,13 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
           var urlLink = document.createElement("a"); // Create a new 'a' element for the URL
           urlLink.href = url;
           urlLink.textContent = url;
+          urlLink.title = url;
           urlLink.target = "_blank";
           urlLink.classList.add("url-link");
-          listItem.appendChild(urlLink);
 
           var timeSpan = document.createElement("span"); // This span will display the remaining time
           timeSpan.classList.add("time-span");
-          listItem.appendChild(timeSpan);
 
           var cancelButton = document.createElement("button");
           cancelButton.textContent = "Cancel";
@@ -56,7 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
           });
 
+          // Append the elements in the desired order: urlLink -> timeSpan -> cancelButton
+          listItem.appendChild(urlLink);
+          listItem.appendChild(timeSpan);
           listItem.appendChild(cancelButton);
+
           snoozedTabs.appendChild(listItem);
         }
       }
@@ -103,25 +107,26 @@ document.addEventListener("DOMContentLoaded", function () {
       var selectedTabIds = Array.from(
         document.getElementById("tabList").selectedOptions
       ).map((option) => parseInt(option.value));
-      var snoozeDuration = parseInt(
-        document.getElementById("snoozeDuration").value
-      );
-      var timeUnit = document.getElementById("timeUnit").value;
 
-      // Convert snooze duration to minutes based on selected time unit
-      switch (timeUnit) {
-        case "seconds":
-          snoozeDuration /= 60; // 1 minute = 60 seconds
-          break;
-        case "minutes":
-          break; // already in minutes
-        case "hours":
-          snoozeDuration *= 60; // 1 hour = 60 minutes
-          break;
-        case "days":
-          snoozeDuration *= 24 * 60; // 1 day = 24 hours = 1440 minutes
-          break;
+      // Get the selected date and time
+      var snoozeDateTimeValue = document.getElementById("snoozeDateTime").value;
+      var snoozeDateTime = new Date(snoozeDateTimeValue);
+
+      // Check if snoozeDateTime is a valid date
+      if (isNaN(snoozeDateTime.getTime())) {
+        alert("Please enter a valid date and time.");
+        return; // Stop the snooze operation
       }
+
+      // Calculate the snooze duration in minutes
+      var snoozeDuration = (snoozeDateTime.getTime() - Date.now()) / 1000 / 60;
+
+      // Check if snooze duration is less than 0.5 minutes (30 seconds)
+      if (snoozeDuration < 0.5) {
+        alert("Snooze duration must be at least 30 seconds.");
+        return; // Stop the snooze operation
+      }
+      snoozeDuration = Math.max(snoozeDuration, 0.5);
 
       // Check if snooze duration is less than 0.5 minutes (30 seconds)
       if (snoozeDuration < 0.5) {

@@ -11,12 +11,31 @@ body {
   border-radius: 10px;
   margin: 20px 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  width: 128px;
+  height: 128px;
+  display: block;
+  margin: auto;
+  padding-bottom: 20px;
 }
 
 h1,
 h2 {
   color: #32cd32;
   margin-bottom: 20px;
+}
+
+.name {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+#bottom {
+  padding-bottom: 10px;
 }
 
 label {
@@ -39,11 +58,20 @@ label {
 }
 
 #tabList option {
-  background-color: #252526; /* Dark background color */
-  color: #dcdcdc; /* Light text color */
-  padding: 5px; /* Add some padding */
-  margin: 2px 0; /* Add some margin between options */
-  border-radius: 5px; /* Rounded corners */
+  background-color: #252526;
+  color: #dcdcdc;
+  padding: 5px;
+  margin: 2px 0;
+  border-radius: 5px;
+}
+
+#snoozeDateTime {
+  background-color: #252526;
+  color: #dcdcdc;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: auto;
 }
 
 button {
@@ -53,21 +81,20 @@ button {
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
-  /* display: flex; */
-  /* justify-content: flex-end; */
   font-size: 18px;
-  /* margin: 10px 2px; */
   cursor: pointer;
   border-radius: 10px;
+  margin: auto;
   transition: background-color 0.3s ease;
-}
-
-.cancel-button {
-  background-color: red;
 }
 
 button:hover {
   background-color: #228b22;
+}
+
+#snoozeButton {
+  color: aliceblue;
+  margin-top: 20px;
 }
 
 select,
@@ -78,38 +105,52 @@ input[type="number"] {
   padding: 10px;
   padding-bottom: 10px;
   border-radius: 5px;
-  /* margin-bottom: 20px; */
 }
 
 #snoozedTabs {
-  /* margin-top: 30px; */
+  box-sizing: border-box;
   padding: 20px;
   background-color: #2d2d30;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  margin: auto;
 }
 
 #snoozedTabs li {
+  list-style-type: none;
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-#logo {
-  width: 128px;
-  height: 128px;
-  display: block;
-  margin: auto;
-  padding-bottom: 20px;
+.url-link {
+  position: relative;
+  color: #00a2ff;
+  font-weight: bold;
+  width: 100px;
+  text-decoration: underline;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .time-span {
   color: #32cd32;
   font-weight: bold;
+  margin: 0 10px;
 }
 
-.url-link {
-  color: #00a2ff;
-  font-weight: bold;
-  text-decoration: underline;
+.cancel-button {
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: rgb(125, 13, 13);
 }

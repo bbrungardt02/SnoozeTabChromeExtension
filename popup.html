@@ -9,18 +9,15 @@
   <body>
     <div class="container">
       <img src="images/icon128.png" alt="Snooze" id="logo" />
-      <label for="tabList">Select a tab to snooze:</label>
+      <label id="bottom" class="name" for="tabList"
+        >Select a tab to snooze:</label
+      >
       <select id="tabList" multiple>
         <!-- Tab options will be dynamically populated here -->
       </select>
-      <label for="snoozeDuration">Snooze for:</label>
-      <input type="number" id="snoozeDuration" min="1" step="1" value="1" />
-      <select id="timeUnit">
-        <option value="seconds">Seconds</option>
-        <option value="minutes">Minutes</option>
-        <option value="hours">Hours</option>
-        <option value="days">Days</option>
-      </select>
+      <label class="name" for="snoozeDuration">Snooze until:</label>
+      <input type="datetime-local" id="snoozeDateTime" />
+
       <button id="snoozeButton">Snooze</button>
     </div>
     <div id="snoozedTabs">
