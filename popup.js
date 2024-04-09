@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to get and display the snoozed tabs
-  // Function to get and display the snoozed tabs
   function getSnoozedTabs() {
     chrome.storage.local.get(null, function (items) {
       var snoozedTabs = document.getElementById("snoozedTabs");
