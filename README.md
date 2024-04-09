@@ -5,7 +5,7 @@ This is a Chrome extension that allows users to snooze tabs and have them reopen
 ## Features
 
 - Snooze any open tab
-- Set the snooze duration in seconds, minutes, hours, or days
+- Set the snooze to open on a later date
 - Snoozed tabs are stored and reopened even after the browser is closed
 
 ## Installation
